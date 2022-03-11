@@ -1,0 +1,35 @@
+{
+    "name": "flex-budget-api",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "dev": "ts-node-dev --transpile-only --no-notify --exit-child src/index.ts",
+        "generate": "ts-node --transpile-only src/schema.ts",
+        "lint": "eslint ./ --fix"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/jontrost/flex-budget-api.git"
+    },
+    "author": "Jonathan Trost",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/jontrost/flex-budget-api/issues"
+    },
+    "homepage": "https://github.com/jontrost/flex-budget-api#readme",
+    "devDependencies": {
+        "@typescript-eslint/eslint-plugin": "^5.14.0",
+        "eslint-config-prettier": "^8.5.0",
+        "eslint-plugin-prettier": "^4.0.0",
+        "eslint-plugin-simple-import-sort": "^7.0.0",
+        "ts-node-dev": "^1.1.8",
+        "typescript": "^4.3.5"
+    },
+    "dependencies": {
+        "apollo-server": "^3.1.1",
+        "graphql": "^15.5.1",
+        "nexus": "^1.1.0"
+    }
+}
