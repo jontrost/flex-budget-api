@@ -1,6 +1,6 @@
 import { extendType, objectType } from "nexus";
 
-import { NexusGenObjects } from "../../nexus-typegen";
+import { FUNDS } from "./data";
 
 export const Fund = objectType({
     name: "Fund",
@@ -11,28 +11,14 @@ export const Fund = objectType({
     }
 });
 
-export const LinkQuery = extendType({
+export const FundQuery = extendType({
     type: "Query",
     definition(t) {
         t.nonNull.list.nonNull.field("funds", {
             type: "Fund",
             resolve() {
-                return funds;
+                return FUNDS;
             }
         });
     }
 });
-
-// Mock data, remove later
-const funds: NexusGenObjects["Fund"][] = [
-    {
-        budgetedAmount: 150,
-        name: "name",
-        spentAmount: 50
-    },
-    {
-        budgetedAmount: 100,
-        name: "name",
-        spentAmount: 50
-    }
-];

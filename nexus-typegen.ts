@@ -28,6 +28,10 @@ export interface NexusGenScalars {
 }
 
 export interface NexusGenObjects {
+  Category: { // root type
+    funds: NexusGenRootTypes['Fund'][]; // [Fund!]!
+    name: string; // String!
+  }
   Fund: { // root type
     budgetedAmount: number; // Float!
     name: string; // String!
@@ -47,23 +51,33 @@ export type NexusGenRootTypes = NexusGenObjects
 export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
 
 export interface NexusGenFieldTypes {
+  Category: { // field return type
+    funds: NexusGenRootTypes['Fund'][]; // [Fund!]!
+    name: string; // String!
+  }
   Fund: { // field return type
     budgetedAmount: number; // Float!
     name: string; // String!
     spentAmount: number; // Float!
   }
   Query: { // field return type
+    categories: NexusGenRootTypes['Category'][]; // [Category!]!
     funds: NexusGenRootTypes['Fund'][]; // [Fund!]!
   }
 }
 
 export interface NexusGenFieldTypeNames {
+  Category: { // field return type name
+    funds: 'Fund'
+    name: 'String'
+  }
   Fund: { // field return type name
     budgetedAmount: 'Float'
     name: 'String'
     spentAmount: 'Float'
   }
   Query: { // field return type name
+    categories: 'Category'
     funds: 'Fund'
   }
 }
