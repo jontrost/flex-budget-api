@@ -14,10 +14,10 @@
         "prettier/prettier": ["error"],
         "indent": ["error", 4],
         "linebreak-style": ["error", "windows"],
+        "no-unused-vars": ["error", { "args": "after-used" }],
         "quotes": ["error", "double"],
         "semi": ["error", "always"],
         "simple-import-sort/imports": ["error"],
         "@typescript-eslint/no-inferrable-types": "off"
     }
 }
-  

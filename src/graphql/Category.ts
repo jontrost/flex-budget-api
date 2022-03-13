@@ -1,4 +1,4 @@
-import { extendType, objectType } from "nexus";
+import { list, nonNull, objectType, queryField } from "nexus";
 
 import { CATEGORIES } from "./data";
 import { Fund } from "./Fund";
@@ -13,14 +13,9 @@ export const Category = objectType({
     }
 });
 
-export const CategoryQuery = extendType({
-    type: "Query",
-    definition(t) {
-        t.nonNull.list.nonNull.field("categories", {
-            type: "Category",
-            resolve() {
-                return CATEGORIES;
-            }
-        });
+export const CategoryQuery = queryField("categories", {
+    type: nonNull(list(nonNull("Category"))),
+    resolve() {
+        return CATEGORIES;
     }
 });

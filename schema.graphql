@@ -7,13 +7,24 @@ type Category {
   name: String!
 }
 
+type Expense {
+  cost: Float!
+  date: String!
+  name: String!
+}
+
 type Fund {
   budgetedAmount: Float!
   name: String!
   spentAmount: Float!
 }
 
+type Mutation {
+  createFund(budgetedAmount: Float!, categoryName: String!, name: String!): Fund
+}
+
 type Query {
   categories: [Category!]!
+  expenses: [Expense!]!
   funds: [Fund!]!
 }

@@ -15,6 +15,19 @@ export const FUNDS: NexusGenObjects["Fund"][] = [
     }
 ];
 
+export const EXPENSES: NexusGenObjects["Expense"][] = [
+    {
+        cost: 50,
+        date: new Date().toLocaleDateString(undefined, { month: "short", day: "numeric" }),
+        name: "Expense 1"
+    },
+    {
+        cost: 150,
+        date: new Date().toLocaleDateString(undefined, { month: "short", day: "numeric" }),
+        name: "Expense 2"
+    }
+];
+
 export const CATEGORIES: NexusGenObjects["Category"][] = [
     {
         name: "Category 1",
