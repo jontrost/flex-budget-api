@@ -36,5 +36,8 @@ export const CATEGORIES: NexusGenObjects["Category"][] = [
     {
         name: "Category 2",
         funds: FUNDS
+    },
+    {
+        name: "Category 3"
     }
 ];
