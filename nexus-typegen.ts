@@ -73,6 +73,7 @@ export interface NexusGenFieldTypes {
   }
   Mutation: { // field return type
     createCategory: NexusGenRootTypes['Category'] | null; // Category
+    createExpense: NexusGenRootTypes['Expense'] | null; // Expense
     createFund: NexusGenRootTypes['Fund'] | null; // Fund
   }
   Query: { // field return type
@@ -99,6 +100,7 @@ export interface NexusGenFieldTypeNames {
   }
   Mutation: { // field return type name
     createCategory: 'Category'
+    createExpense: 'Expense'
     createFund: 'Fund'
   }
   Query: { // field return type name
@@ -111,6 +113,11 @@ export interface NexusGenFieldTypeNames {
 export interface NexusGenArgTypes {
   Mutation: {
     createCategory: { // args
+      name: string; // String!
+    }
+    createExpense: { // args
+      cost: number; // Float!
+      date: string; // String!
       name: string; // String!
     }
     createFund: { // args
