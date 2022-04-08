@@ -1,8 +1,13 @@
 import { ApolloServer } from "apollo-server";
+import { connect } from "mongoose";
 
 import { schema } from "./schema";
 
-export const server = new ApolloServer({
+connect("mongodb://localhost:27017/flexBudgetDB").then(() => {
+    console.log("Database connection successful");
+});
+
+const server = new ApolloServer({
     schema
 });
 
