@@ -4,7 +4,7 @@
 
 type Category {
   _id: ID!
-  funds: [Fund!]
+  funds: [Fund]!
   name: String!
 }
 
@@ -31,6 +31,7 @@ input FundInput {
 type Mutation {
   createCategory(name: String!): Category
   createExpense(cost: Float!, date: String!, name: String!): Expense
+  createFund(budgetedAmount: Float!, categoryId: ID!, name: String!): Category
   updateCategory(funds: [FundInput!], id: ID!, name: String): Category
 }
 

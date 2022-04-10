@@ -1,41 +1,15 @@
-import {
-    idArg,
-    inputObjectType,
-    list,
-    mutationField,
-    nonNull,
-    objectType,
-    queryField,
-    stringArg
-} from "nexus";
+import { idArg, list, mutationField, nonNull, objectType, queryField, stringArg } from "nexus";
 
-import { CATEGORY_MODEL, FUND_MODEL } from "../database/Category";
-
-export const FUND = objectType({
-    name: "Fund",
-    definition(t) {
-        t.nonNull.id("_id");
-        t.nonNull.float("budgetedAmount");
-        t.nonNull.string("name");
-        t.nonNull.float("spentAmount");
-    }
-});
-
-export const FUND_INPUT = inputObjectType({
-    name: "FundInput",
-    definition(t) {
-        t.nonNull.float("budgetedAmount");
-        t.nonNull.string("name");
-        t.nonNull.float("spentAmount");
-    }
-});
+import { CATEGORY_MODEL } from "../database/Category";
+import { FUND_MODEL } from "../database/Fund";
+import { FUND } from "./Fund";
 
 export const CATEGORY = objectType({
     name: "Category",
     definition(t) {
         t.nonNull.id("_id");
         t.nonNull.string("name");
-        t.list.nonNull.field("funds", {
+        t.nonNull.list.field("funds", {
             type: FUND
         });
     }

@@ -35,7 +35,7 @@ export interface NexusGenScalars {
 export interface NexusGenObjects {
   Category: { // root type
     _id: string; // ID!
-    funds?: NexusGenRootTypes['Fund'][] | null; // [Fund!]
+    funds: Array<NexusGenRootTypes['Fund'] | null>; // [Fund]!
     name: string; // String!
   }
   Expense: { // root type
@@ -67,7 +67,7 @@ export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
 export interface NexusGenFieldTypes {
   Category: { // field return type
     _id: string; // ID!
-    funds: NexusGenRootTypes['Fund'][] | null; // [Fund!]
+    funds: Array<NexusGenRootTypes['Fund'] | null>; // [Fund]!
     name: string; // String!
   }
   Expense: { // field return type
@@ -85,6 +85,7 @@ export interface NexusGenFieldTypes {
   Mutation: { // field return type
     createCategory: NexusGenRootTypes['Category'] | null; // Category
     createExpense: NexusGenRootTypes['Expense'] | null; // Expense
+    createFund: NexusGenRootTypes['Category'] | null; // Category
     updateCategory: NexusGenRootTypes['Category'] | null; // Category
   }
   Query: { // field return type
@@ -114,6 +115,7 @@ export interface NexusGenFieldTypeNames {
   Mutation: { // field return type name
     createCategory: 'Category'
     createExpense: 'Expense'
+    createFund: 'Category'
     updateCategory: 'Category'
   }
   Query: { // field return type name
@@ -130,6 +132,11 @@ export interface NexusGenArgTypes {
     createExpense: { // args
       cost: number; // Float!
       date: string; // String!
+      name: string; // String!
+    }
+    createFund: { // args
+      budgetedAmount: number; // Float!
+      categoryId: string; // ID!
       name: string; // String!
     }
     updateCategory: { // args
