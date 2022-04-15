@@ -37,12 +37,12 @@ export const CREATE_CATEGORY_MUTATION = mutationField("createCategory", {
 export const UPDATE_CATEGORY_MUTATION = mutationField("updateCategory", {
     type: "Category",
     args: {
-        id: nonNull(idArg()),
+        _id: nonNull(idArg()),
         name: stringArg(),
         funds: list(nonNull("FundInput"))
     },
     async resolve(_parent, args) {
-        const { id, name, funds } = args;
+        const { _id, name, funds } = args;
         const fundModels = funds?.map((fund) => {
             return new FUND_MODEL({
                 budgetedAmount: fund.budgetedAmount,
@@ -51,9 +51,9 @@ export const UPDATE_CATEGORY_MUTATION = mutationField("updateCategory", {
             });
         });
 
-        const doc = await CATEGORY_MODEL.findById(id);
+        const doc = await CATEGORY_MODEL.findById(_id);
         if (doc == null) {
-            throw new Error("Unable to find category with id: " + args.id);
+            throw new Error("Unable to find category with id: " + _id);
         } else {
             doc.name = name ?? doc.name;
             doc.funds = fundModels ?? doc.funds;

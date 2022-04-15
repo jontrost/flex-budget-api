@@ -87,9 +87,11 @@ export interface NexusGenFieldTypes {
     createExpense: NexusGenRootTypes['Expense'] | null; // Expense
     createFund: NexusGenRootTypes['Category'] | null; // Category
     updateCategory: NexusGenRootTypes['Category'] | null; // Category
+    updateExpense: NexusGenRootTypes['Expense'] | null; // Expense
   }
   Query: { // field return type
     categories: NexusGenRootTypes['Category'][]; // [Category!]!
+    expense: NexusGenRootTypes['Expense'] | null; // Expense
     expenses: NexusGenRootTypes['Expense'][]; // [Expense!]!
   }
 }
@@ -117,9 +119,11 @@ export interface NexusGenFieldTypeNames {
     createExpense: 'Expense'
     createFund: 'Category'
     updateCategory: 'Category'
+    updateExpense: 'Expense'
   }
   Query: { // field return type name
     categories: 'Category'
+    expense: 'Expense'
     expenses: 'Expense'
   }
 }
@@ -140,9 +144,20 @@ export interface NexusGenArgTypes {
       name: string; // String!
     }
     updateCategory: { // args
+      _id: string; // ID!
       funds?: NexusGenInputs['FundInput'][] | null; // [FundInput!]
-      id: string; // ID!
       name?: string | null; // String
+    }
+    updateExpense: { // args
+      _id: string; // ID!
+      cost?: number | null; // Float
+      date?: string | null; // String
+      name?: string | null; // String
+    }
+  }
+  Query: {
+    expense: { // args
+      _id: string; // ID!
     }
   }
 }
