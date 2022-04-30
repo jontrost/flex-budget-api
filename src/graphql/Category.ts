@@ -15,10 +15,21 @@ export const CATEGORY = objectType({
     }
 });
 
-export const CATEGORY_QUERY = queryField("categories", {
+export const GET_CATEGORIES_QUERY = queryField("categories", {
     type: nonNull(list(nonNull("Category"))),
     async resolve() {
         const response = await CATEGORY_MODEL.find().lean();
+        return response;
+    }
+});
+
+export const GET_CATEGORY_BY_ID_QUERY = queryField("category", {
+    type: "Category",
+    args: {
+        _id: nonNull(idArg())
+    },
+    async resolve(_parent, args) {
+        const response = await CATEGORY_MODEL.findById(args._id).lean();
         return response;
     }
 });

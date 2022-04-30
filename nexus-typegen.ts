@@ -91,6 +91,7 @@ export interface NexusGenFieldTypes {
   }
   Query: { // field return type
     categories: NexusGenRootTypes['Category'][]; // [Category!]!
+    category: NexusGenRootTypes['Category'] | null; // Category
     expense: NexusGenRootTypes['Expense'] | null; // Expense
     expenses: NexusGenRootTypes['Expense'][]; // [Expense!]!
   }
@@ -123,6 +124,7 @@ export interface NexusGenFieldTypeNames {
   }
   Query: { // field return type name
     categories: 'Category'
+    category: 'Category'
     expense: 'Expense'
     expenses: 'Expense'
   }
@@ -156,6 +158,9 @@ export interface NexusGenArgTypes {
     }
   }
   Query: {
+    category: { // args
+      _id: string; // ID!
+    }
     expense: { // args
       _id: string; // ID!
     }

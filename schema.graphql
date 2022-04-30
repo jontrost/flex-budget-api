@@ -38,6 +38,7 @@ type Mutation {
 
 type Query {
   categories: [Category!]!
+  category(_id: ID!): Category
   expense(_id: ID!): Expense
   expenses: [Expense!]!
 }
