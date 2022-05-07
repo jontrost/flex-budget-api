@@ -1,13 +1,4 @@
-import {
-    floatArg,
-    idArg,
-    list,
-    mutationField,
-    nonNull,
-    objectType,
-    queryField,
-    stringArg
-} from "nexus";
+import { floatArg, idArg, list, mutationField, nonNull, objectType, queryField, stringArg } from "nexus";
 
 import { EXPENSE_MODEL } from "../database/Expense";
 

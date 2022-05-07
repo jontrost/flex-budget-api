@@ -57,7 +57,6 @@ export const UPDATE_CATEGORY_MUTATION = mutationField("updateCategory", {
         const fundModels = funds?.map((fund) => {
             return new FUND_MODEL({
                 budgetedAmount: fund.budgetedAmount,
-                spentAmount: fund.spentAmount,
                 name: fund.name
             });
         });

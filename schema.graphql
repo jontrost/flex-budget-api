@@ -19,13 +19,11 @@ type Fund {
   _id: ID!
   budgetedAmount: Float!
   name: String!
-  spentAmount: Float!
 }
 
 input FundInput {
   budgetedAmount: Float!
   name: String!
-  spentAmount: Float!
 }
 
 type Mutation {
@@ -34,6 +32,7 @@ type Mutation {
   createFund(budgetedAmount: Float!, categoryId: ID!, name: String!): Category
   updateCategory(_id: ID!, funds: [FundInput!], name: String): Category
   updateExpense(_id: ID!, cost: Float, date: String, name: String): Expense
+  updateFund(_id: ID!, budgetedAmount: Float!, currentCategoryId: ID!, name: String!, newCategoryId: ID!): Category
 }
 
 type Query {
@@ -41,4 +40,5 @@ type Query {
   category(_id: ID!): Category
   expense(_id: ID!): Expense
   expenses: [Expense!]!
+  fund(_id: ID!, categoryId: ID!): Fund
 }

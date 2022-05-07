@@ -17,7 +17,6 @@ export interface NexusGenInputs {
   FundInput: { // input type
     budgetedAmount: number; // Float!
     name: string; // String!
-    spentAmount: number; // Float!
   }
 }
 
@@ -48,7 +47,6 @@ export interface NexusGenObjects {
     _id: string; // ID!
     budgetedAmount: number; // Float!
     name: string; // String!
-    spentAmount: number; // Float!
   }
   Mutation: {};
   Query: {};
@@ -80,7 +78,6 @@ export interface NexusGenFieldTypes {
     _id: string; // ID!
     budgetedAmount: number; // Float!
     name: string; // String!
-    spentAmount: number; // Float!
   }
   Mutation: { // field return type
     createCategory: NexusGenRootTypes['Category'] | null; // Category
@@ -88,12 +85,14 @@ export interface NexusGenFieldTypes {
     createFund: NexusGenRootTypes['Category'] | null; // Category
     updateCategory: NexusGenRootTypes['Category'] | null; // Category
     updateExpense: NexusGenRootTypes['Expense'] | null; // Expense
+    updateFund: NexusGenRootTypes['Category'] | null; // Category
   }
   Query: { // field return type
     categories: NexusGenRootTypes['Category'][]; // [Category!]!
     category: NexusGenRootTypes['Category'] | null; // Category
     expense: NexusGenRootTypes['Expense'] | null; // Expense
     expenses: NexusGenRootTypes['Expense'][]; // [Expense!]!
+    fund: NexusGenRootTypes['Fund'] | null; // Fund
   }
 }
 
@@ -113,7 +112,6 @@ export interface NexusGenFieldTypeNames {
     _id: 'ID'
     budgetedAmount: 'Float'
     name: 'String'
-    spentAmount: 'Float'
   }
   Mutation: { // field return type name
     createCategory: 'Category'
@@ -121,12 +119,14 @@ export interface NexusGenFieldTypeNames {
     createFund: 'Category'
     updateCategory: 'Category'
     updateExpense: 'Expense'
+    updateFund: 'Category'
   }
   Query: { // field return type name
     categories: 'Category'
     category: 'Category'
     expense: 'Expense'
     expenses: 'Expense'
+    fund: 'Fund'
   }
 }
 
@@ -156,6 +156,13 @@ export interface NexusGenArgTypes {
       date?: string | null; // String
       name?: string | null; // String
     }
+    updateFund: { // args
+      _id: string; // ID!
+      budgetedAmount: number; // Float!
+      currentCategoryId: string; // ID!
+      name: string; // String!
+      newCategoryId: string; // ID!
+    }
   }
   Query: {
     category: { // args
@@ -163,6 +170,10 @@ export interface NexusGenArgTypes {
     }
     expense: { // args
       _id: string; // ID!
+    }
+    fund: { // args
+      _id: string; // ID!
+      categoryId: string; // ID!
     }
   }
 }
