@@ -9,7 +9,7 @@ export const CATEGORY = objectType({
     definition(t) {
         t.nonNull.id("_id");
         t.nonNull.string("name");
-        t.nonNull.list.field("funds", {
+        t.list.nonNull.field("funds", {
             type: FUND
         });
     }
@@ -49,7 +49,7 @@ export const UPDATE_CATEGORY_MUTATION = mutationField("updateCategory", {
     type: "Category",
     args: {
         _id: nonNull(idArg()),
-        name: stringArg(),
+        name: nonNull(stringArg()),
         funds: list(nonNull("FundInput"))
     },
     async resolve(_parent, args) {
@@ -65,7 +65,7 @@ export const UPDATE_CATEGORY_MUTATION = mutationField("updateCategory", {
         if (doc == null) {
             throw new Error("Unable to find category with id: " + _id);
         } else {
-            doc.name = name ?? doc.name;
+            doc.name = name;
             doc.funds = fundModels ?? doc.funds;
             return await doc.save();
         }

@@ -81,8 +81,8 @@ export const UPDATE_FUND_MUTATION = mutationField("updateFund", {
         }
 
         if (currentCategoryId === newCategoryId) {
-            currentDoc.funds[fundIndex].budgetedAmount = budgetedAmount ?? currentDoc.funds[fundIndex].budgetedAmount;
-            currentDoc.funds[fundIndex].name = name ?? currentDoc.funds[fundIndex].name;
+            currentDoc.funds[fundIndex].budgetedAmount = budgetedAmount;
+            currentDoc.funds[fundIndex].name = name;
             return await currentDoc.save();
         } else {
             const newDoc = await CATEGORY_MODEL.findById(newCategoryId);

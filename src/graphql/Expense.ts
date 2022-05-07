@@ -48,9 +48,9 @@ export const UPDATE_EXPENSE_MUTATION = mutationField("updateExpense", {
     type: "Expense",
     args: {
         _id: nonNull(idArg()),
-        cost: floatArg(),
-        date: stringArg(),
-        name: stringArg()
+        cost: nonNull(floatArg()),
+        date: nonNull(stringArg()),
+        name: nonNull(stringArg())
     },
     async resolve(_parent, args) {
         const { _id, cost, date, name } = args;
@@ -58,9 +58,9 @@ export const UPDATE_EXPENSE_MUTATION = mutationField("updateExpense", {
         if (doc == null) {
             throw new Error("Unable to find expense with id: " + _id);
         } else {
-            doc.cost = cost ?? doc.cost;
-            doc.date = date ?? doc.date;
-            doc.name = name ?? doc.name;
+            doc.cost = cost;
+            doc.date = date;
+            doc.name = name;
             return await doc.save();
         }
     }

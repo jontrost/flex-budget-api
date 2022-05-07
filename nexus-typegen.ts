@@ -34,7 +34,7 @@ export interface NexusGenScalars {
 export interface NexusGenObjects {
   Category: { // root type
     _id: string; // ID!
-    funds: Array<NexusGenRootTypes['Fund'] | null>; // [Fund]!
+    funds?: NexusGenRootTypes['Fund'][] | null; // [Fund!]
     name: string; // String!
   }
   Expense: { // root type
@@ -65,7 +65,7 @@ export type NexusGenAllTypes = NexusGenRootTypes & NexusGenScalars
 export interface NexusGenFieldTypes {
   Category: { // field return type
     _id: string; // ID!
-    funds: Array<NexusGenRootTypes['Fund'] | null>; // [Fund]!
+    funds: NexusGenRootTypes['Fund'][] | null; // [Fund!]
     name: string; // String!
   }
   Expense: { // field return type
@@ -148,13 +148,13 @@ export interface NexusGenArgTypes {
     updateCategory: { // args
       _id: string; // ID!
       funds?: NexusGenInputs['FundInput'][] | null; // [FundInput!]
-      name?: string | null; // String
+      name: string; // String!
     }
     updateExpense: { // args
       _id: string; // ID!
-      cost?: number | null; // Float
-      date?: string | null; // String
-      name?: string | null; // String
+      cost: number; // Float!
+      date: string; // String!
+      name: string; // String!
     }
     updateFund: { // args
       _id: string; // ID!
