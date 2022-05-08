@@ -2,6 +2,8 @@ import { floatArg, idArg, inputObjectType, mutationField, nonNull, objectType, q
 
 import { CATEGORY_MODEL } from "../database/Category";
 import { FUND_MODEL } from "../database/Fund";
+import { EXPENSE_INPUT } from ".";
+import { EXPENSE } from "./Expense";
 
 export const FUND = objectType({
     name: "Fund",
@@ -9,6 +11,9 @@ export const FUND = objectType({
         t.nonNull.id("_id");
         t.nonNull.float("budgetedAmount");
         t.nonNull.string("name");
+        t.list.nonNull.field("expenses", {
+            type: EXPENSE
+        });
     }
 });
 
@@ -17,6 +22,9 @@ export const FUND_INPUT = inputObjectType({
     definition(t) {
         t.nonNull.float("budgetedAmount");
         t.nonNull.string("name");
+        t.list.nonNull.field("expenses", {
+            type: EXPENSE_INPUT
+        });
     }
 });
 

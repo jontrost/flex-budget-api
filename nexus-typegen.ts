@@ -14,8 +14,14 @@ declare global {
 }
 
 export interface NexusGenInputs {
+  ExpenseInput: { // input type
+    cost: number; // Float!
+    date: string; // String!
+    name: string; // String!
+  }
   FundInput: { // input type
     budgetedAmount: number; // Float!
+    expenses?: NexusGenInputs['ExpenseInput'][] | null; // [ExpenseInput!]
     name: string; // String!
   }
 }
@@ -46,6 +52,7 @@ export interface NexusGenObjects {
   Fund: { // root type
     _id: string; // ID!
     budgetedAmount: number; // Float!
+    expenses?: NexusGenRootTypes['Expense'][] | null; // [Expense!]
     name: string; // String!
   }
   Mutation: {};
@@ -77,21 +84,22 @@ export interface NexusGenFieldTypes {
   Fund: { // field return type
     _id: string; // ID!
     budgetedAmount: number; // Float!
+    expenses: NexusGenRootTypes['Expense'][] | null; // [Expense!]
     name: string; // String!
   }
   Mutation: { // field return type
     createCategory: NexusGenRootTypes['Category'] | null; // Category
-    createExpense: NexusGenRootTypes['Expense'] | null; // Expense
+    createExpense: NexusGenRootTypes['Category'] | null; // Category
     createFund: NexusGenRootTypes['Category'] | null; // Category
     updateCategory: NexusGenRootTypes['Category'] | null; // Category
-    updateExpense: NexusGenRootTypes['Expense'] | null; // Expense
+    updateExpense: NexusGenRootTypes['Category'] | null; // Category
     updateFund: NexusGenRootTypes['Category'] | null; // Category
   }
   Query: { // field return type
     categories: NexusGenRootTypes['Category'][]; // [Category!]!
     category: NexusGenRootTypes['Category'] | null; // Category
     expense: NexusGenRootTypes['Expense'] | null; // Expense
-    expenses: NexusGenRootTypes['Expense'][]; // [Expense!]!
+    expensesForFund: NexusGenRootTypes['Expense'][]; // [Expense!]!
     fund: NexusGenRootTypes['Fund'] | null; // Fund
   }
 }
@@ -111,21 +119,22 @@ export interface NexusGenFieldTypeNames {
   Fund: { // field return type name
     _id: 'ID'
     budgetedAmount: 'Float'
+    expenses: 'Expense'
     name: 'String'
   }
   Mutation: { // field return type name
     createCategory: 'Category'
-    createExpense: 'Expense'
+    createExpense: 'Category'
     createFund: 'Category'
     updateCategory: 'Category'
-    updateExpense: 'Expense'
+    updateExpense: 'Category'
     updateFund: 'Category'
   }
   Query: { // field return type name
     categories: 'Category'
     category: 'Category'
     expense: 'Expense'
-    expenses: 'Expense'
+    expensesForFund: 'Expense'
     fund: 'Fund'
   }
 }
@@ -136,8 +145,10 @@ export interface NexusGenArgTypes {
       name: string; // String!
     }
     createExpense: { // args
+      categoryId: string; // ID!
       cost: number; // Float!
       date: string; // String!
+      fundId: string; // ID!
       name: string; // String!
     }
     createFund: { // args
@@ -152,8 +163,10 @@ export interface NexusGenArgTypes {
     }
     updateExpense: { // args
       _id: string; // ID!
+      categoryId: string; // ID!
       cost: number; // Float!
       date: string; // String!
+      fundId: string; // ID!
       name: string; // String!
     }
     updateFund: { // args
@@ -170,6 +183,10 @@ export interface NexusGenArgTypes {
     }
     expense: { // args
       _id: string; // ID!
+    }
+    expensesForFund: { // args
+      categoryId: string; // ID!
+      fundId: string; // ID!
     }
     fund: { // args
       _id: string; // ID!

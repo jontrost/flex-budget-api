@@ -1,6 +1,6 @@
 import { model, Schema } from "mongoose";
 
-interface Expense {
+export interface Expense {
     _id: string;
     cost: number;
     date: string;
