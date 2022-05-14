@@ -101,6 +101,7 @@ export interface NexusGenFieldTypes {
     expense: NexusGenRootTypes['Expense'] | null; // Expense
     expensesForFund: NexusGenRootTypes['Expense'][]; // [Expense!]!
     fund: NexusGenRootTypes['Fund'] | null; // Fund
+    funds: NexusGenRootTypes['Fund'][]; // [Fund!]!
   }
 }
 
@@ -136,6 +137,7 @@ export interface NexusGenFieldTypeNames {
     expense: 'Expense'
     expensesForFund: 'Expense'
     fund: 'Fund'
+    funds: 'Fund'
   }
 }
 
@@ -189,6 +191,10 @@ export interface NexusGenArgTypes {
       fundId: string; // ID!
     }
     fund: { // args
+      _id: string; // ID!
+      categoryId: string; // ID!
+    }
+    funds: { // args
       _id: string; // ID!
       categoryId: string; // ID!
     }

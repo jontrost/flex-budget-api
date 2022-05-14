@@ -49,4 +49,5 @@ type Query {
   expense(_id: ID!): Expense
   expensesForFund(categoryId: ID!, fundId: ID!): [Expense!]!
   fund(_id: ID!, categoryId: ID!): Fund
+  funds(_id: ID!, categoryId: ID!): [Fund!]!
 }

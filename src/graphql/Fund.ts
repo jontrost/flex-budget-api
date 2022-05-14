@@ -1,4 +1,14 @@
-import { floatArg, idArg, inputObjectType, mutationField, nonNull, objectType, queryField, stringArg } from "nexus";
+import {
+    floatArg,
+    idArg,
+    inputObjectType,
+    list,
+    mutationField,
+    nonNull,
+    objectType,
+    queryField,
+    stringArg
+} from "nexus";
 
 import { CATEGORY_MODEL } from "../database/Category";
 import { FUND_MODEL } from "../database/Fund";
@@ -25,6 +35,18 @@ export const FUND_INPUT = inputObjectType({
         t.list.nonNull.field("expenses", {
             type: EXPENSE_INPUT
         });
+    }
+});
+
+export const GET_FUNDS_QUERY = queryField("funds", {
+    type: nonNull(list(nonNull("Fund"))),
+    args: {
+        _id: nonNull(idArg()),
+        categoryId: nonNull(idArg())
+    },
+    async resolve() {
+        const response = await FUND_MODEL.find().lean();
+        return response;
     }
 });
 
